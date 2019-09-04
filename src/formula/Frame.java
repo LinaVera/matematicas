@@ -1,19 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package formula;
 
 public class Frame extends javax.swing.JFrame {
-
+    
     String palabra;
-
+    
     Pila p = new Pila();
-
+    
     public Frame() {
         initComponents();
-
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -126,22 +123,22 @@ public class Frame extends javax.swing.JFrame {
         try {
             p.borrar();
             jTextField2.setText("");
-
+            
             palabra = '(' + jTextField1.getText() + ')';
             for (int i = 0; i < palabra.length(); i++) {
                 char u = palabra.charAt(i);
                 p.apilar(u);
             }
-
+            
             p.imp();
             if (p.Fbf(jTextField2)) {
                 jTextField2.setText("Formula bien formada");
             }
-
+            
         } catch (Exception e) {
-             
+            
         }
-
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

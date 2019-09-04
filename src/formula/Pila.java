@@ -125,7 +125,7 @@ public class Pila {
             bf = false;
             //Diferentes combinaciones
         } else {
-            while (reco!=null) {
+            while (reco != null) {
                 //Si hay un parentesis
 
                 if (parentesis(l)) {
@@ -198,7 +198,7 @@ public class Pila {
 
                     }
                 }
-reco=reco.sig;
+                reco = reco.sig;
             }
 
         }
@@ -207,80 +207,4 @@ reco=reco.sig;
 
     }
 
-    public boolean letra(JTextArea mos) {
-        boolean j = false;
-        Nodos reco = pila;
-        char u = reco.dato;
-        if (!parentesis()) {
-            mos.append("No coinceden el número de parentesis\nFormula mal formada");
-            j = false;
-        } else if (tam == 1) {
-            if (u == 'p' || u == 'q' || u == 'r' || u == 's' | u == 'T' || u == 'L') {
-                mos.append("Formula bien formada");
-                j = true;
-            } else {
-                mos.append("Formula mal formada");
-            }
-
-        } else if (u == '-') {
-            mos.append("Mal,  - al final \nFormula mal formada");
-            j = false;
-        } else {
-
-            while (reco != null) {
-
-                if (u == '(' || u == ')') {
-                    reco = reco.sig;
-                    if (reco.dato == 'L' || reco.dato == 'T') {
-                        mos.append("Mal,  T L -> ( )\nFormula mal formada");
-                        j = false;
-                    } else {
-                        mos.append("Formula bien formada");
-                        j = true;
-                    }
-
-                } else if (u == 'q' || u == 'r' || u == 's' || u == 'p') {
-                    reco = reco.sig;
-                    if (reco.dato == 'q' || reco.dato == 'r' || reco.dato == 's' || reco.dato == 'p') {
-                        mos.append("Mal, p,q,r,s -> p,q,r,s\nFormula mal formada");
-                        j = false;
-                    } else {
-                        j = true;
-                    }
-
-                } else if (u == '<' || u == '>' || u == '∧' || u == 'v') {
-                    reco = reco.sig;
-                    if (reco.dato == 'L' || reco.dato == 'T') {
-                        mos.append("Mal, T L -> <->  -> ∧ v\nFormula mal formada");
-                        j = false;
-                    } else if (reco.dato == '<' || reco.dato == '>' || reco.dato == '∧' || reco.dato == 'v') {
-                        mos.append("Mal, <->,  ->, ∧, v, -      ->       <->,  ->, ∧, v, -\nFormula mal formada");
-                        j = false;
-
-                    } else {
-                        j = true;
-                    }
-
-                } else if (u == 'L' || u == 'T') {
-                    reco = reco.sig;
-                    if (reco.dato == '<' || reco.dato == '>' || reco.dato == '∧' || reco.dato == 'v' || reco.dato == '(' || reco.dato == ')') {
-                        mos.append("Formula mal formada");
-                        j = false;
-                    } else if (reco.dato == 0) {
-                        mos.append("Formula bien formada");
-                        j = true;
-                    }
-
-                } else {
-                    mos.append("Formula bien formada");
-                    j = true;
-                }
-                reco = reco.sig;
-
-            }
-        }
-
-        return j;
-
-    }
 }
