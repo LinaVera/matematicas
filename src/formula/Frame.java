@@ -123,21 +123,26 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        p.borrar();
-        jTextField2.setText("");
+        try {
+            p.borrar();
+            jTextField2.setText("");
 
-        palabra = jTextField1.getText();
-        for (int i = 0; i < palabra.length(); i++) {
-            char u = palabra.charAt(i);
-            p.apilar(u);
+            palabra = '(' + jTextField1.getText() + ')';
+            for (int i = 0; i < palabra.length(); i++) {
+                char u = palabra.charAt(i);
+                p.apilar(u);
+            }
+
+            p.imp();
+            if (p.Fbf(jTextField2)) {
+                jTextField2.setText("Formula bien formada");
+            }
+
+        } catch (Exception e) {
+             
         }
 
-        p.imp();
 
-        if (p.letra(jTextField2)) {
-            jTextField2.setText("Formula bien formada");
-
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
